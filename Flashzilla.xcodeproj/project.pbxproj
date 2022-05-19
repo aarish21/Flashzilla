@@ -14,6 +14,8 @@
 		6F7FE4122832412E006867CA /* FlashzillaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7FE4112832412E006867CA /* FlashzillaTests.swift */; };
 		6F7FE41C2832412E006867CA /* FlashzillaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7FE41B2832412E006867CA /* FlashzillaUITests.swift */; };
 		6F7FE41E2832412E006867CA /* FlashzillaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7FE41D2832412E006867CA /* FlashzillaUITestsLaunchTests.swift */; };
+		6F7FE42B2836B6F1006867CA /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7FE42A2836B6F1006867CA /* Card.swift */; };
+		6F7FE42F2836B763006867CA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7FE42E2836B763006867CA /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		6F7FE4172832412E006867CA /* FlashzillaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlashzillaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F7FE41B2832412E006867CA /* FlashzillaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashzillaUITests.swift; sourceTree = "<group>"; };
 		6F7FE41D2832412E006867CA /* FlashzillaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashzillaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6F7FE42A2836B6F1006867CA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		6F7FE42E2836B763006867CA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 			children = (
 				6F7FE4002832412C006867CA /* FlashzillaApp.swift */,
 				6F7FE4022832412C006867CA /* ContentView.swift */,
+				6F7FE42A2836B6F1006867CA /* Card.swift */,
+				6F7FE42E2836B763006867CA /* CardView.swift */,
 				6F7FE4042832412E006867CA /* Assets.xcassets */,
 				6F7FE4062832412E006867CA /* Preview Content */,
 			);
@@ -258,6 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F7FE4032832412C006867CA /* ContentView.swift in Sources */,
+				6F7FE42B2836B6F1006867CA /* Card.swift in Sources */,
+				6F7FE42F2836B763006867CA /* CardView.swift in Sources */,
 				6F7FE4012832412C006867CA /* FlashzillaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,7 +434,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,7 +463,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
