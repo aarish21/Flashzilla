@@ -12,7 +12,7 @@ struct EditCards: View {
     @State private var cards = [Card]()
     @State private var newPrompt = ""
     @State private var newAnswer = ""
-    
+    let savePath = FileManager.documentsDirectory.appendingPathComponent("SaveCards")
     
     var body: some View {
         NavigationView {
@@ -47,16 +47,26 @@ struct EditCards: View {
         dismiss()
     }
     func loadData() {
-        if let data = UserDefaults.standard.data(forKey: "Cards") {
-            if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
-                cards = decoded
-            }
+        
+        do {
+            let data = try Data(contentsOf: savePath)
+            
+            cards = try JSONDecoder().decode([Card].self, from: data)
+             
+        } catch {
+            cards = []
+            print("Unable to .")
         }
+        
     }
     func saveData() {
-        if let data = try? JSONEncoder().encode(cards) {
-            UserDefaults.standard.set(data, forKey: "Cards")
+        do {
+            let data = try JSONEncoder().encode(cards)
+            try data.write(to: savePath, options: [.atomic, .completeFileProtection])
+        } catch {
+            print("Unable to save data.")
         }
+        
     }
     
     func addCard() {
@@ -64,9 +74,11 @@ struct EditCards: View {
         let trimmedAnswer = newAnswer.trimmingCharacters(in: .whitespaces)
         guard trimmedPrompt.isEmpty == false && trimmedAnswer.isEmpty == false else { return }
         
-        let card = Card(prompt: trimmedPrompt, answer: trimmedAnswer)
+        let card = Card(id: UUID(), prompt: trimmedPrompt, answer: trimmedAnswer)
         cards.insert(card, at: 0)
         saveData()
+        newAnswer = ""
+        newPrompt = ""
     }
     
     func removeCards(at offsets: IndexSet) {
@@ -80,5 +92,12 @@ struct EditCards: View {
 struct EditCards_Previews: PreviewProvider {
     static var previews: some View {
         EditCards()
+    }
+}
+
+extension FileManager {
+    static var documentsDirectory: URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
 }

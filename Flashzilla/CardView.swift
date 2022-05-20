@@ -15,7 +15,8 @@ struct CardView: View {
     @State private var offset = CGSize.zero
     @State private var feedback = UINotificationFeedbackGenerator()
     
-    var removal: (() -> Void)? = nil
+    
+    var removal: ((Bool) -> Void)? = nil
     
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     
@@ -69,12 +70,14 @@ struct CardView: View {
                 }
                 .onEnded { _ in
                     if abs(offset.width) > 100 {
+                        var correct: Bool
                         if offset.width > 0 {
-                           
+                           correct = true
                         } else {
                             feedback.notificationOccurred(.error)
+                            correct = false
                         }
-                        removal?()
+                        removal?(correct)
                     } else {
                         offset = .zero
                     }

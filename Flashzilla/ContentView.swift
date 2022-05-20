@@ -11,7 +11,7 @@ struct ContentView: View {
     @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     @Environment(\.scenePhase) var scenePhase
-    
+    let savePath = FileManager.documentsDirectory.appendingPathComponent("SaveCards")
     @State private var showingEditScreen = false
     @State private var cards = [Card]()
     @State private var isActive = true
@@ -41,9 +41,16 @@ struct ContentView: View {
                             .clipShape(Capsule())
                     }
                     ForEach(0..<cards.count, id: \.self) { index in
-                        CardView(card: cards[index]){
-                            withAnimation{
-                                removeCard(at: index)
+                        CardView(card: cards[index]){correct  in
+                            if correct{
+                                withAnimation{
+                                    removeCard(at: index)
+                                }
+                            }else{
+                                let wrongCard = self.cards.remove(at: index)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        self.cards.insert(wrongCard, at: 0)
+                                }
                             }
                         }
                         .stacked(at: index, in: cards.count)
@@ -134,10 +141,14 @@ struct ContentView: View {
         .sheet(isPresented: $showingEditScreen, onDismiss: resetCards, content: EditCards.init)
     }
     func loadData() {
-        if let data = UserDefaults.standard.data(forKey: "Cards") {
-            if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
-                cards = decoded
-            }
+        do {
+            let data = try Data(contentsOf: savePath)
+            
+            cards = try JSONDecoder().decode([Card].self, from: data)
+             
+        } catch {
+            cards = []
+            print("Unable to .")
         }
     }
     func resetCards() {
